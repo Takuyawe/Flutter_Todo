@@ -1,9 +1,5 @@
-import 'dart:io';
-
 import 'package:my_app/constants/db.dart';
 import 'package:my_app/db/todo_schema.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TodoRepository {
