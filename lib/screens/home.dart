@@ -2,6 +2,7 @@ import "dart:io";
 
 import "package:flutter/material.dart";
 import "package:my_app/constants/colors.dart";
+import "package:my_app/constants/db.dart";
 import "package:my_app/db/todo_repository.dart";
 import "package:my_app/db/todo_schema.dart";
 import "package:my_app/widgets/todo_item.dart";
@@ -29,23 +30,17 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> initializeTodoRepository() async {
-    const _databaseName = "todo.db";
-    const _databaseVersion = 1;
-    const _tableName = "Todo";
-    const _columnId = "id";
-    const _columnTodoText = "todoText";
-    const _columnIsDone = "isDone";
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, _databaseName);
+    String path = join(documentsDirectory.path, databaseName);
     Database database = await openDatabase(
       path,
-      version: _databaseVersion,
+      version: databaseVersion,
       onCreate: (Database db, int version) async {
         await db.execute('''
-        CREATE TABLE $_tableName (
-          $_columnId INTEGER PRIMARY KEY,
-          $_columnTodoText TEXT,
-          $_columnIsDone String
+        CREATE TABLE $tableName (
+          $columnId INTEGER PRIMARY KEY,
+          $columnTodoText TEXT,
+          $columnIsDone String
         )
       ''');
       },
