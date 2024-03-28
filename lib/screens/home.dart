@@ -40,14 +40,12 @@ class _HomeState extends State<Home> {
         CREATE TABLE $tableName (
           $columnId INTEGER PRIMARY KEY,
           $columnTodoText TEXT,
-          $columnIsDone String
+          $columnIsDone INTEGER
         )
       ''');
       },
     );
     _todoRepository = TodoRepository(database);
-    print(database.isOpen);
-    print("database, $database");
     _loadTodoList();
   }
 
